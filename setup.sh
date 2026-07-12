@@ -1,15 +1,7 @@
 #!/bin/bash
-# ╔══════════════════════════════════════════════════════════════╗
-#  ELITE-X DNSTT SCRIPT v3.3.1 - FALCON ENHANCED (NO 3PROXY)
-#  + C EDNS Proxy (Multi-core, IPv4) + IPv6 Disabled
-#  + BBR + 20MB Buffers + High Backlog + Nice -20
-#  + Bandwidth GB Limits + Auto-Delete
-# ╚══════════════════════════════════════════════════════════════╝
+
 set -euo pipefail
 
-# ═══════════════════════════════════════════════════════════════
-# VARIABLES
-# ═══════════════════════════════════════════════════════════════
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -56,9 +48,7 @@ show_banner() {
 print_color() { echo -e "${2}${1}${NC}"; }
 set_timezone() { timedatectl set-timezone $TIMEZONE 2>/dev/null || ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime 2>/dev/null || true; }
 
-# ═══════════════════════════════════════════════════════════════
-# KERNEL OPTIMIZATION + DISABLE IPv6 (SAFE VERSION)
-# ═══════════════════════════════════════════════════════════════
+
 optimize_kernel_and_disable_ipv6() {
     echo -e "${YELLOW}⚙️  Disabling IPv6 & Applying Kernel Optimizations...${NC}"
 
@@ -120,9 +110,6 @@ NIPV6
     echo -e "${GREEN}✅ Kernel optimized & IPv6 disabled${NC}"
 }
 
-# ═══════════════════════════════════════════════════════════════
-# C EDNS PROXY (Multi-core, IPv4 Only, SO_REUSEPORT)
-# ═══════════════════════════════════════════════════════════════
 create_c_edns_proxy() {
     echo -e "${YELLOW}🔧 Creating High-Performance C EDNS Proxy...${NC}"
 
